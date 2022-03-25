@@ -16,38 +16,39 @@ import software.bernie.example.GeckoLibMod;
 import software.bernie.geckolib3.GeckoLib;
 
 public class ChaosAwakens implements ModInitializer, ClientModInitializer {
-        public static final String modID = "chaosawakens";
-        public static Config config;
 
-        public static final Logger LOGGER = LogManager.getLogger();
+  public static final String modID = "chaosawakens";
+  public static final Logger LOGGER = LogManager.getLogger();
+  public static Config config;
 
-        @Environment(EnvType.CLIENT)
-        @Override
-        public void onInitializeClient() {
-                EntityRendererRegistry.INSTANCE.register(Entities.ENT, EntEntityRenderer::new);
-        }
+  public static <D> void debug(String domain, D message) {
+    LOGGER.debug("[" + domain + "]: " + (message == null ? "null" : message.toString()));
+  }
 
-        @Override
-        public void onInitialize() {
-                GeckoLibMod.DISABLE_IN_DEV = true;
-                GeckoLib.initialize();
-                AutoConfig.register(Config.class, JanksonConfigSerializer::new);
-                config = AutoConfig.getConfigHolder(Config.class).getConfig();
-        }
+  public static <I> void info(String domain, I message) {
+    LOGGER.info("[" + domain + "]: " + (message == null ? "null" : message.toString()));
+  }
 
-        public static <D> void debug(String domain, D message) {
-                LOGGER.debug("[" + domain + "]: " + (message == null ? "null" : message.toString()));
-        }
-        public static <I> void info(String domain, I message) {
-                LOGGER.info("[" + domain + "]: " + (message == null ? "null" : message.toString()));
-        }
+  public static <W> void warn(String domain, W message) {
+    LOGGER.warn("[" + domain + "]: " + (message == null ? "null" : message.toString()));
+  }
 
-        public static <W> void warn(String domain, W message) {
-                LOGGER.warn("[" + domain + "]: " + (message == null ? "null" : message.toString()));
-        }
+  public static <E> void error(String domain, E message) {
+    LOGGER.error("[" + domain + "]: " + (message == null ? "null" : message.toString()));
+  }
 
-        public static <E> void error(String domain, E message) {
-                LOGGER.error("[" + domain + "]: " + (message == null ? "null" : message.toString()));
-        }
+  @Environment(EnvType.CLIENT)
+  @Override
+  public void onInitializeClient() {
+    EntityRendererRegistry.INSTANCE.register(Entities.ENT, EntEntityRenderer::new);
+  }
+
+  @Override
+  public void onInitialize() {
+    GeckoLibMod.DISABLE_IN_DEV = true;
+    GeckoLib.initialize();
+    AutoConfig.register(Config.class, JanksonConfigSerializer::new);
+    config = AutoConfig.getConfigHolder(Config.class).getConfig();
+  }
 
 }

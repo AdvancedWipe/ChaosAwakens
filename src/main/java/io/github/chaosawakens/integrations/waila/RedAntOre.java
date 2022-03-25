@@ -8,10 +8,10 @@ import net.minecraft.block.Blocks;
 
 public enum RedAntOre implements IBlockComponentProvider {
 
-    INSTANCE;
+  INSTANCE;
 
-    @Override
-    public BlockState getOverride(IBlockAccessor accessor, IPluginConfig config) {
-        return Blocks.DIAMOND_ORE.getDefaultState();
-    }
+  @Override
+  public BlockState getOverride(IBlockAccessor accessor, IPluginConfig config) {
+    return Blocks.DIAMOND_ORE.getDefaultState();
+  }
 }

@@ -1,34 +1,26 @@
 package io.github.chaosawakens.items.util.generic;
 
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.item.ArrowItem;
+import java.util.Optional;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
-
 public class GenericBowItem extends BowItem {
-    private int maxUseTime;
-    private int fireRate;
-    public GenericBowItem(Settings settings, @Nullable Integer maxUseTime, @Nullable Integer fireRate) {
-        super(settings);
-        this.maxUseTime = Optional.ofNullable(maxUseTime).orElse(72000);
-        this.fireRate = Optional.ofNullable(fireRate).orElse(20);
-    }
-    @Override
-    public int getMaxUseTime(ItemStack stack) {
-        return this.maxUseTime;
-    }
+
+  private int maxUseTime;
+  private int fireRate;
+
+  public GenericBowItem(Settings settings, @Nullable Integer maxUseTime,
+      @Nullable Integer fireRate) {
+    super(settings);
+    this.maxUseTime = Optional.ofNullable(maxUseTime).orElse(72000);
+    this.fireRate = Optional.ofNullable(fireRate).orElse(20);
+  }
+
+  @Override
+  public int getMaxUseTime(ItemStack stack) {
+    return this.maxUseTime;
+  }
 
     /*
     @Override
@@ -93,13 +85,13 @@ public class GenericBowItem extends BowItem {
     }
     */
 
-    public float getNewPullProgress(int useTicks) {
-        float f = (float)useTicks / (float)this.fireRate;
-        f = (f * f + f * 2.0F) / 3.0F;
-        if (f > 1.0F) {
-            f = 1.0F;
-        }
-
-        return f;
+  public float getNewPullProgress(int useTicks) {
+    float f = (float) useTicks / (float) this.fireRate;
+    f = (f * f + f * 2.0F) / 3.0F;
+    if (f > 1.0F) {
+      f = 1.0F;
     }
+
+    return f;
+  }
 }

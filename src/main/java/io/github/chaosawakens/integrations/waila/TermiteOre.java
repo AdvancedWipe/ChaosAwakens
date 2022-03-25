@@ -8,10 +8,10 @@ import net.minecraft.block.Blocks;
 
 public enum TermiteOre implements IBlockComponentProvider {
 
-    INSTANCE;
+  INSTANCE;
 
-    @Override
-    public BlockState getOverride(IBlockAccessor accessor, IPluginConfig config) {
-        return Blocks.EMERALD_ORE.getDefaultState();
-    }
+  @Override
+  public BlockState getOverride(IBlockAccessor accessor, IPluginConfig config) {
+    return Blocks.EMERALD_ORE.getDefaultState();
+  }
 }

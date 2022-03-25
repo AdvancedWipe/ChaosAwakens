@@ -15,29 +15,35 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class RayGun extends Item {
-    private final ToolMaterial toolMaterial;
 
-    public RayGun(ToolMaterial toolMaterial, Settings settings) {
-        super(settings);
-        this.toolMaterial = toolMaterial;
+  private final ToolMaterial toolMaterial;
+
+  public RayGun(ToolMaterial toolMaterial, Settings settings) {
+    super(settings);
+    this.toolMaterial = toolMaterial;
+  }
+
+  public ToolMaterial getToolMaterial() {
+    return this.toolMaterial;
+  }
+
+  public boolean isRepairable(ItemStack stack, ItemStack ingredient) {
+    return this.toolMaterial.getRepairIngredient().test(ingredient) || super.canRepair(stack,
+        ingredient);
+  }
+
+  @Override
+  public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+    ItemStack heldStack = user.getStackInHand(hand);
+    if (world.isClient()) {
+      return new TypedActionResult<>(ActionResult.PASS, heldStack);
     }
 
-    public ToolMaterial getToolMaterial() {
-        return this.toolMaterial;
-    }
-
-    public boolean isRepairable(ItemStack stack, ItemStack ingredient) {
-        return this.toolMaterial.getRepairIngredient().test(ingredient) || super.canRepair(stack, ingredient);
-    }
-
-    @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack heldStack = user.getStackInHand(hand);
-        if (world.isClient()) return new TypedActionResult<>(ActionResult.PASS, heldStack);
-
-        float xA = -MathHelper.sin(user.headYaw * ((float) Math.PI / 180F)) * MathHelper.cos(user.getPitch() * ((float) Math.PI / 180F));
-        float yA = -MathHelper.sin(user.getPitch() * ((float) Math.PI / 180F));
-        float zA = MathHelper.cos(user.headYaw * ((float) Math.PI / 180F)) * MathHelper.cos(user.getPitch() * ((float) Math.PI / 180F));
+    float xA = -MathHelper.sin(user.headYaw * ((float) Math.PI / 180F)) * MathHelper.cos(
+        user.getPitch() * ((float) Math.PI / 180F));
+    float yA = -MathHelper.sin(user.getPitch() * ((float) Math.PI / 180F));
+    float zA = MathHelper.cos(user.headYaw * ((float) Math.PI / 180F)) * MathHelper.cos(
+        user.getPitch() * ((float) Math.PI / 180F));
 
         /*
         RayGunProjectileEntity projectile = new RayGunProjectileEntity(world, user, xA, yA, zA);
@@ -45,15 +51,16 @@ public class RayGun extends Item {
         projectile.setDirectionAndMovement(projectile, user.getPitch(), user.headYaw, 0, 1F, 0);
         */
 
-        if (!user.isCreative()) {
-            heldStack.damage(1, user, (e) -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
-        }
-
-        //world.addEntity(projectile);
-        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (user.getRandom().nextFloat() * 0.4F + 1.2F) + 0.5F);
-
-        user.incrementStat(Stats.USED.getOrCreateStat(this));
-
-        return new TypedActionResult<>(ActionResult.SUCCESS, heldStack);
+    if (!user.isCreative()) {
+      heldStack.damage(1, user, (e) -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
     }
+
+    //world.addEntity(projectile);
+    world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ARROW_SHOOT,
+        SoundCategory.PLAYERS, 1.0F, 1.0F / (user.getRandom().nextFloat() * 0.4F + 1.2F) + 0.5F);
+
+    user.incrementStat(Stats.USED.getOrCreateStat(this));
+
+    return new TypedActionResult<>(ActionResult.SUCCESS, heldStack);
+  }
 }

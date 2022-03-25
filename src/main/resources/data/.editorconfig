@@ -1,0 +1,5 @@
+root = true
+
+# excludes all json files in the sub directories from being formatted
+[*.json]
+ij_formatter_enabled = false

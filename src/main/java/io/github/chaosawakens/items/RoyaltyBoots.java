@@ -12,18 +12,24 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class RoyaltyBoots extends GenericEnchantedArmorItem {
-    public RoyaltyBoots(ArmorMaterial material, Settings settings, EnchantmentLevelEntry[] enchantments) {
-        super(material, EquipmentSlot.FEET, settings, enchantments);
-    }
 
-    @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) { //why the fuck can i not find onArmorTick() anywhere?
-        if (entity instanceof LivingEntity) {
-            LivingEntity livingEntity = (LivingEntity) entity;
-            if (livingEntity.getEquippedStack(EquipmentSlot.FEET) == stack) {
-                if (!livingEntity.isOnGround()) livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 60, 0, false, false));
-            }
+  public RoyaltyBoots(ArmorMaterial material, Settings settings,
+      EnchantmentLevelEntry[] enchantments) {
+    super(material, EquipmentSlot.FEET, settings, enchantments);
+  }
+
+  @Override
+  public void inventoryTick(ItemStack stack, World world, Entity entity, int slot,
+      boolean selected) { //why the fuck can i not find onArmorTick() anywhere?
+    if (entity instanceof LivingEntity) {
+      LivingEntity livingEntity = (LivingEntity) entity;
+      if (livingEntity.getEquippedStack(EquipmentSlot.FEET) == stack) {
+        if (!livingEntity.isOnGround()) {
+          livingEntity.addStatusEffect(
+              new StatusEffectInstance(StatusEffects.SLOW_FALLING, 60, 0, false, false));
         }
-        super.inventoryTick(stack, world, entity, slot, selected);
+      }
     }
+    super.inventoryTick(stack, world, entity, slot, selected);
+  }
 }
