@@ -4,5 +4,6 @@ import net.minecraft.enchantment.EnchantmentLevelEntry;
 
 @FunctionalInterface
 public interface IPreEnchanted {
-    EnchantmentLevelEntry[] enchant();
+
+  EnchantmentLevelEntry[] enchant();
 }

@@ -1,21 +1,6 @@
 package io.github.chaosawakens.worldgen;
 
-import io.github.chaosawakens.ChaosAwakens;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.minecraft.block.BlockState;
-import net.minecraft.structure.rule.BlockMatchRuleTest;
-import net.minecraft.structure.rule.RuleTest;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
 
 public class Initializer implements ModInitializer {
     /*
@@ -48,8 +33,8 @@ public class Initializer implements ModInitializer {
     }
     */
 
-    @Override
-    public void onInitialize() {
+  @Override
+  public void onInitialize() {
         /*
         initRegister(ORE_RUBY_LAVA, "ore_ruby_lava");
         initRegister(ORE_RUBY_NO_SURFACE, "ore_ruby_no_surface");
@@ -66,7 +51,7 @@ public class Initializer implements ModInitializer {
         initRegister(RED_ANT_INFESTED_ORE, "red_ant_infested_ore");
         initRegister(TERMITE_INFESTED_ORE, "termite_infested_ore");
         */
-    }
+  }
 
     /*
     private final void initRegister(ConfiguredFeature feature, String path) {

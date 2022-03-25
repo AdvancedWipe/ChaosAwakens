@@ -11,9 +11,10 @@ import org.spongepowered.asm.mixin.Mixin;
 @Mixin(IWailaPlugin.class)
 @Environment(EnvType.CLIENT)
 public class WailaPlugin implements IWailaPlugin {
-    @Override
-    public void register(IRegistrar registrar) {
-        registrar.addOverride(TermiteOre.INSTANCE, TermiteInfestedOre.class);
-        registrar.addOverride(RedAntOre.INSTANCE, RedAntInfestedOre.class);
-    }
+
+  @Override
+  public void register(IRegistrar registrar) {
+    registrar.addOverride(TermiteOre.INSTANCE, TermiteInfestedOre.class);
+    registrar.addOverride(RedAntOre.INSTANCE, RedAntInfestedOre.class);
+  }
 }

@@ -9,13 +9,14 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 public class GenericDevItem extends Item {
-    public GenericDevItem(Settings settings) {
-        super(settings);
-    }
 
-    @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        user.incrementStat(Stats.USED.getOrCreateStat(this));
-        return super.use(world, user, hand);
-    }
+  public GenericDevItem(Settings settings) {
+    super(settings);
+  }
+
+  @Override
+  public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+    user.incrementStat(Stats.USED.getOrCreateStat(this));
+    return super.use(world, user, hand);
+  }
 }

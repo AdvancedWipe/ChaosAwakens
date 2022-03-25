@@ -2,6 +2,7 @@ package io.github.chaosawakens.mixin;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import java.util.UUID;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -17,31 +18,36 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.UUID;
-
 @Mixin(ArmorItem.class)
 public class ArmorItemMixin {
-    @Shadow @Final private static UUID[] MODIFIERS;
-    @Shadow @Final @Mutable private Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 
-    @Inject(method = "<init>", at = @At(value = "RETURN"))
-    private void constructor(ArmorMaterial material, EquipmentSlot slot, Item.Settings settings, CallbackInfo ci) {
-        if (material.getKnockbackResistance() > 0.0f) {
-            UUID uuid = MODIFIERS[slot.getEntitySlotId()];
-            ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
+  @Shadow
+  @Final
+  private static UUID[] MODIFIERS;
+  @Shadow
+  @Final
+  @Mutable
+  private Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 
-            this.attributeModifiers.forEach(builder::put);
+  @Inject(method = "<init>", at = @At(value = "RETURN"))
+  private void constructor(ArmorMaterial material, EquipmentSlot slot, Item.Settings settings,
+      CallbackInfo ci) {
+    if (material.getKnockbackResistance() > 0.0f) {
+      UUID uuid = MODIFIERS[slot.getEntitySlotId()];
+      ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
 
-            builder.put(
-                    EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE,
-                    new EntityAttributeModifier(uuid,
-                            "Armor knockback resistance",
-                            material.getKnockbackResistance(),
-                            EntityAttributeModifier.Operation.ADDITION
-                    )
-            );
+      this.attributeModifiers.forEach(builder::put);
 
-            this.attributeModifiers = builder.build();
-        }
+      builder.put(
+          EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE,
+          new EntityAttributeModifier(uuid,
+              "Armor knockback resistance",
+              material.getKnockbackResistance(),
+              EntityAttributeModifier.Operation.ADDITION
+          )
+      );
+
+      this.attributeModifiers = builder.build();
     }
+  }
 }
