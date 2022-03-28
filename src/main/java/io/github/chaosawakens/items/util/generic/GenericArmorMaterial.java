@@ -1,5 +1,6 @@
 package io.github.chaosawakens.items.util.generic;
 
+import io.github.chaosawakens.items.Items;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.recipe.Ingredient;
@@ -8,15 +9,15 @@ import net.minecraft.sound.SoundEvents;
 
 public class GenericArmorMaterial implements ArmorMaterial {
 
-  public int[] durability = new int[]{13, 15, 16, 11};
-  public int durabilityMod;
-  public int[] protection;
-  public float toughness = 0.0f;
-  public int enchantability;
-  public Ingredient repairIngredient = Ingredient.ofItems(null);
-  public String name;
-  public float knockbackResistance = 0.0f;
-  public SoundEvent soundEvent = SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND;
+  private final int[] durability = new int[]{13, 15, 16, 11};
+  private final int durabilityMod;
+  private final int[] protection;
+  private float toughness = 0.0f;
+  private final int enchantability;
+  private Ingredient repairIngredient;
+  private final String name;
+  private float knockbackResistance = 0.0f;
+  private SoundEvent soundEvent = SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND;
 
   public GenericArmorMaterial(int durabilityMod, int[] protection, int enchantability,
       float toughness, Ingredient repairIngredient, String name) {

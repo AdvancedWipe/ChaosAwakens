@@ -44,24 +44,30 @@ public class ArmorMaterials {
         Ingredient.ofItems(Items.TITANIUM_INGOT, Items.URANIUM_INGOT), "ultimate", 0.125f);
     LAVA_EEL_ARMOR_MATERIAL = new GenericArmorMaterial(33, new int[]{2, 5, 7, 2}, 9, 0.0f,
         Ingredient.ofItems(Items.LAVA_EEL), "lava_eel", SoundEvents.ITEM_ARMOR_EQUIP_GENERIC);
-    MOTH_SCALE_ARMOR_MATERIAL = new GenericArmorMaterial(35, new int[]{2, 5, 7, 2}, 16, 1.75f, null,
-        "moth_scale", 0.05f, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC);
+    MOTH_SCALE_ARMOR_MATERIAL = new GenericArmorMaterial(35, new int[]{2, 5, 7, 2}, 16, 1.75f,
+        Ingredient.ofItems(Items.MOTH_SCALE), "moth_scale", 0.05f,
+        SoundEvents.ITEM_ARMOR_EQUIP_GENERIC);
+    // TODO Set repairIngredients for materials!
     PEACOCK_FEATHER_ARMOR_MATERIAL = new GenericArmorMaterial(8, new int[]{2, 4, 5, 2}, 8, 0.0f,
-        null, "peacock_feather", SoundEvents.ITEM_ARMOR_EQUIP_GENERIC);
+        Ingredient.ofItems(Items.AMETHYST), "peacock_feather",
+        SoundEvents.ITEM_ARMOR_EQUIP_GENERIC);
+    // TODO Set repairIngredients for materials!
     PINK_TOURMALINE_ARMOR_MATERIAL = new GenericArmorMaterial(8, new int[]{2, 5, 7, 3}, 10, 1.25f,
-        null, "pink_tourmaline");
-    CATS_EYE_ARMOR_MATERIAL = new GenericArmorMaterial(36, new int[]{4, 7, 8, 4}, 20, 2.5f, null,
-        "cats_eye");
-    COPPER_ARMOR_MATERIAL = new GenericArmorMaterial(9, new int[]{1, 3, 4, 1}, 6, 0.0f, null,
-        "copper");
-    TIN_ARMOR_MATERIAL = new GenericArmorMaterial(12, new int[]{1, 4, 5, 2}, 8, 0.0f, null, "tin");
-    SILVER_ARMOR_MATERIAL = new GenericArmorMaterial(21, new int[]{2, 4, 7, 3}, 10, 1.0f, null,
-        "silver");
-    PLATINUM_ARMOR_MATERIAL = new GenericArmorMaterial(35, new int[]{3, 6, 8, 3}, 12, 2.5f, null,
-        "platinum");
+        Ingredient.ofItems(Items.AMETHYST), "pink_tourmaline");
+    CATS_EYE_ARMOR_MATERIAL = new GenericArmorMaterial(36, new int[]{4, 7, 8, 4}, 20, 2.5f,
+        Ingredient.ofItems(Items.CATS_EYE_INGOT), "cats_eye");
+    COPPER_ARMOR_MATERIAL = new GenericArmorMaterial(9, new int[]{1, 3, 4, 1}, 6, 0.0f,
+        Ingredient.ofItems(Items.COPPER_LUMP), "copper");
+    TIN_ARMOR_MATERIAL = new GenericArmorMaterial(12, new int[]{1, 4, 5, 2}, 8, 0.0f,
+        Ingredient.ofItems(Items.TIN_LUMP), "tin");
+    SILVER_ARMOR_MATERIAL = new GenericArmorMaterial(21, new int[]{2, 4, 7, 3}, 10, 1.0f,
+        Ingredient.ofItems(Items.SILVER_LUMP), "silver");
+    PLATINUM_ARMOR_MATERIAL = new GenericArmorMaterial(35, new int[]{3, 6, 8, 3}, 12, 2.5f,
+        Ingredient.ofItems(Items.PLATINUM_LUMP), "platinum");
+    // TODO Set repairIngredients for materials!
     ROYAL_GUARDIAN_ARMOR_MATERIAL = new GenericArmorMaterial(72, new int[]{8, 12, 14, 8}, 84, 7.5f,
-        null, "royal_guardian", 0.4f);
+        Ingredient.ofItems(Items.AMETHYST), "royal_guardian", 0.4f);
     QUEEN_SCALE_ARMOR_MATERIAL = new GenericArmorMaterial(68, new int[]{9, 14, 16, 9}, 96, 8.0f,
-        null, "queen_scale", 0.3f);
+        Ingredient.ofItems(Items.QUEEN_SCALE), "queen_scale", 0.3f);
   }
 }
